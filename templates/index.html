@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Wheat Seeds Kernel Classification </title>
+    <style>
+        body {
+            
+            background-repeat: repeat-y;
+            background-size: cover;
+            background-position: center;
+        }
+        label{ color:black }
+        .center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .input-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .input-group label {
+            margin-right: 5px;
+        }
+        .input-group input,
+        .input-group select {
+            width: 200px;
+        }
+        .heading-wrapper {
+            background-color: rgba(0, 0, 0, 0.2);
+            color: white;
+            padding: 10px;
+            font-size: 24px;
+        }
+        h2 {color: white;}
+        .hint-text {
+            font-size: 12px;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+    <div class="center">
+        <div>
+            <h1> -: Wheat Seeds Kernel Classification :- </h1>
+        </div>
+        <br>
+        <form action="/predict" method="POST">
+            
+            
+            <div class="input-group">
+                <label for="area">Area:</label>
+                <input type="text" name="area" id='area' placeholder="example: 14.84, 13.95, 14.88" value="{{ area }}">
+            </div>
+            <br>
+            <div class="input-group">
+                <label for="perimeter">Perimeter:</label>
+                <input type="text" name="perimeter" id="perimeter" placeholder="example: 14.84, 13.95, 14.88" value="{{ perimeter }}">
+            </div>
+            <br>
+            <div class="input-group">
+                <label for="compactness">Compactness:</label>
+                <input type="text" name="compactness" id="compactness" placeholder="example: 0.8714, 0.9590, 0.8645" value="{{ compactness }}">
+            </div>
+            <br>
+            <div class="input-group">
+                <label for="length">Length of Kernel:</label>
+                <input type="text" name="length" id="length" placeholder="example: 5.22, 4.852, 4.878" value="{{ length }}">
+            </div>
+            <br>
+            <div class="input-group">
+                <label for="width">Width of Kernel:</label>
+                <input type="text" name="width" id="width" placeholder="example: 3.315,3.337,3.456" value="{{ width }}">
+            </div>
+            <br>
+            <div class="input-group">
+                <label for="a_coef">Asymmetry Coefficient:</label>
+                <input type="text" name="a_coef" id="a_coef" placeholder="example: 2.22, 2.958, 1.015" value="{{ a_coef }}">
+            </div>
+            <br>
+            <div class="input-group">
+                <label for="length_grv">Length of kernel Groove:</label>
+                <input type="text" name="lkg" id="lkg" placeholder="example:5.22, 4.852,4.878" value="{{ length_grv }}">
+            </div>
+            <br>
+            <input type="submit" value="Predict">
+        </form>
+        <br>
+        {% if prediction %}
+        <div class="heading-wrapper">
+            <h2>Prediction Result:</h2>
+            <p>The predicted class of seed kernel is: <strong>{{ prediction }}</strong></p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
